@@ -4,7 +4,6 @@ use std::sync::{Arc, Mutex};
 use rhythm_core::audio::AudioEngine;
 use rhythm_core::models::Pattern;
 use rhythm_core::project::Project;
-use rhythm_core::validation::validate_project;
 use tauri::Manager;
 
 struct AppState {
@@ -13,15 +12,7 @@ struct AppState {
 
 #[tauri::command]
 fn save_project(path: String, project_json: String) -> Result<(), String> {
-    let project: Project =
-        Project::from_json(&project_json).map_err(|e| format!("Invalid project: {}", e))?;
-    let errors = validate_project(&project);
-    if !errors.is_empty() {
-        return Err(format!(
-            "Validation failed: {:?}",
-            errors.iter().map(|e| e.message.clone()).collect::<Vec<_>>()
-        ));
-    }
+    Project::from_json(&project_json).map_err(|e| format!("{}", e))?;
     std::fs::write(&path, &project_json).map_err(|e| format!("Failed to write file: {}", e))?;
     Ok(())
 }
@@ -30,25 +21,14 @@ fn save_project(path: String, project_json: String) -> Result<(), String> {
 fn load_project(path: String) -> Result<String, String> {
     let content =
         std::fs::read_to_string(&path).map_err(|e| format!("Failed to read file: {}", e))?;
-    let project: Project =
-        Project::from_json(&content).map_err(|e| format!("Invalid project file: {}", e))?;
-    let errors = validate_project(&project);
-    if !errors.is_empty() {
-        return Err(format!(
-            "Validation failed: {:?}",
-            errors.iter().map(|e| e.message.clone()).collect::<Vec<_>>()
-        ));
-    }
+    Project::from_json(&content).map_err(|e| format!("{}", e))?;
     Ok(content)
 }
 
 #[tauri::command]
 fn get_project_json(project_json: String) -> Result<String, String> {
-    let project: Project =
-        Project::from_json(&project_json).map_err(|e| format!("Invalid project: {}", e))?;
-    project
-        .to_json()
-        .map_err(|e| format!("Serialization failed: {}", e))
+    let project = Project::from_json(&project_json).map_err(|e| format!("{}", e))?;
+    project.to_json().map_err(|e| format!("{}", e))
 }
 
 #[tauri::command]
