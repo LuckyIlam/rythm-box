@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "name": "Untitled",
+    "version": "1.0",
+    "created": "2026-06-28T15:23:00.626Z",
+    "modified": "2026-06-28T15:23:00.626Z"
+  },
+  "settings": {
+    "master_volume": 1
+  },
+  "patterns": [
+    {
+      "id": "pattern-1",
+      "name": "Pattern 1",
+      "bpm": 60,
+      "steps": 16,
+      "instruments": [
+        {
+          "id": "kick",
+          "name": "Kick",
+          "sound": "kick",
+          "volume": 0.8,
+          "sample": "kick"
+        },
+        {
+          "id": "snare",
+          "name": "Snare",
+          "sound": "snare",
+          "volume": 0.8,
+          "sample": "snare"
+        },
+        {
+          "id": "hihat-closed",
+          "name": "Hi-Hat",
+          "sound": "hihat-closed",
+          "volume": 0.8,
+          "sample": "hihat-closed"
+        },
+        {
+          "id": "hihat-open",
+          "name": "Open Hat",
+          "sound": "hihat-open",
+          "volume": 0.8,
+          "sample": "hihat-open"
+        },
+        {
+          "id": "crash",
+          "name": "Crash",
+          "sound": "crash",
+          "volume": 0.8,
+          "sample": "crash"
+        }
+      ],
+      "grid": {
+        "kick": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "snare": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "hihat-closed": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "hihat-open": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "crash": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      }
+    }
+  ]
+}
