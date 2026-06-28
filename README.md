@@ -99,6 +99,18 @@ rythm-box/
 | Ctrl+S | Save project |
 | Space | Play / Stop |
 
+## Included Samples
+
+| Sample | File |
+|--------|------|
+| Kick | `src-tauri/samples/kick.wav` |
+| Snare | `src-tauri/samples/snare.wav` |
+| Closed Hi-hat | `src-tauri/samples/hihat-closed.wav` |
+| Open Hi-hat | `src-tauri/samples/hihat-open.wav` |
+| Crash | `src-tauri/samples/crash.wav` |
+
+Samples are loaded from `samples/` relative to the app resource directory at runtime.
+
 ## Tech Stack
 
 | Layer | Technology |

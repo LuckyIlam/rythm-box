@@ -1,6 +1,6 @@
-use std::collections::HashMap;
-use serde::{Deserialize, Serialize};
 use crate::models::Instrument;
+use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Pattern {
@@ -15,11 +15,41 @@ pub struct Pattern {
 impl Pattern {
     pub fn new(id: impl Into<String>, name: impl Into<String>) -> Self {
         let defaults = vec![
-            Instrument { id: "kick".into(), name: "Kick".into(), sound: "kick".into(), volume: 0.8, sample: Some("kick".into()) },
-            Instrument { id: "snare".into(), name: "Snare".into(), sound: "snare".into(), volume: 0.8, sample: Some("snare".into()) },
-            Instrument { id: "hihat-closed".into(), name: "Hi-Hat".into(), sound: "hihat-closed".into(), volume: 0.8, sample: Some("hihat-closed".into()) },
-            Instrument { id: "hihat-open".into(), name: "Open Hat".into(), sound: "hihat-open".into(), volume: 0.8, sample: Some("hihat-open".into()) },
-            Instrument { id: "crash".into(), name: "Crash".into(), sound: "crash".into(), volume: 0.8, sample: Some("crash".into()) },
+            Instrument {
+                id: "kick".into(),
+                name: "Kick".into(),
+                sound: "kick".into(),
+                volume: 0.8,
+                sample: Some("kick".into()),
+            },
+            Instrument {
+                id: "snare".into(),
+                name: "Snare".into(),
+                sound: "snare".into(),
+                volume: 0.8,
+                sample: Some("snare".into()),
+            },
+            Instrument {
+                id: "hihat-closed".into(),
+                name: "Hi-Hat".into(),
+                sound: "hihat-closed".into(),
+                volume: 0.8,
+                sample: Some("hihat-closed".into()),
+            },
+            Instrument {
+                id: "hihat-open".into(),
+                name: "Open Hat".into(),
+                sound: "hihat-open".into(),
+                volume: 0.8,
+                sample: Some("hihat-open".into()),
+            },
+            Instrument {
+                id: "crash".into(),
+                name: "Crash".into(),
+                sound: "crash".into(),
+                volume: 0.8,
+                sample: Some("crash".into()),
+            },
         ];
         let mut grid = HashMap::new();
         for inst in &defaults {
@@ -51,7 +81,8 @@ impl Pattern {
     }
 
     pub fn add_instrument(&mut self, instrument: Instrument) {
-        self.grid.insert(instrument.id.clone(), vec![false; self.steps as usize]);
+        self.grid
+            .insert(instrument.id.clone(), vec![false; self.steps as usize]);
         self.instruments.push(instrument);
     }
 

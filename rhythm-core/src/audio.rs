@@ -35,7 +35,9 @@ impl AudioEngine {
         let mut samples: HashMap<String, Vec<u8>> = HashMap::new();
         if let Some(dir) = samples_dir {
             if dir.exists() {
-                for entry in std::fs::read_dir(&dir).map_err(|e| format!("Failed to read samples dir: {}", e))? {
+                for entry in std::fs::read_dir(&dir)
+                    .map_err(|e| format!("Failed to read samples dir: {}", e))?
+                {
                     let entry = entry.map_err(|e| format!("Failed to read entry: {}", e))?;
                     let path = entry.path();
                     if path.extension().and_then(|s| s.to_str()) == Some("wav") {
@@ -135,8 +137,9 @@ impl AudioEngine {
                     if let Some(ref pattern) = current_pattern {
                         let beats_per_second = bpm as f64 / 60.0;
                         let steps_per_beat = 4.0;
-                        let step_duration =
-                            std::time::Duration::from_secs_f64(1.0 / (beats_per_second * steps_per_beat));
+                        let step_duration = std::time::Duration::from_secs_f64(
+                            1.0 / (beats_per_second * steps_per_beat),
+                        );
 
                         if step_timer.elapsed() >= step_duration {
                             for inst in &pattern.instruments {
@@ -145,7 +148,8 @@ impl AudioEngine {
                                         if let Some(ref sample_name) = inst.sample {
                                             if let Some(sample_data) = samples.get(sample_name) {
                                                 let cursor = Cursor::new(sample_data.clone());
-                                                if let Ok(source) = rodio::Decoder::new_wav(cursor) {
+                                                if let Ok(source) = rodio::Decoder::new_wav(cursor)
+                                                {
                                                     if let Ok(sink) =
                                                         rodio::Sink::try_new(&stream_handle)
                                                     {
